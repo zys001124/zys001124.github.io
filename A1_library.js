@@ -3,6 +3,7 @@ const log = console.log;
 
 let numOfItems = 0;
 let subTotal = 0;
+let discount = 0;
 let taxRate = 0;
 const cart = []
 
@@ -11,6 +12,7 @@ class item {
         this.name = name;
 		this.price = price;
         this.qty = 1;
+        this.discount = 0;
 
         this.id = numOfItems;
         numOfItems++;
@@ -82,6 +84,8 @@ function deleteItem(e){
         const inter = parseFloat(price).toFixed(2);
         const inter2 = subTotal - (parseFloat(inter) * qty);
         subTotal = parseFloat(inter2.toFixed(2));
+        const inter3 = discount - cart[itemId].discount;
+        discount = parseFloat(inter3.toFixed(2));
         const tbody = deleteRow.parentElement;
         tbody.removeChild(deleteRow);
 	}
@@ -114,8 +118,14 @@ function applyDiscount(e){
         for(let i = 0; i < cart.length; i++){
             if(cart[i] != null){
                 const inter2 =  cart[i].price * nowPercent /100;
+                const orginalPrice = cart[i].price;
                 cart[i].price = parseFloat(inter2.toFixed(2));
-                subTotal += cart[i].price;
+                const amountDiscount = (orginalPrice - cart[i].price) * cart[i].qty;
+                const inter3 = subTotal + cart[i].price * cart[i].qty;
+                subTotal = parseFloat(inter3.toFixed(2));
+                const inter4 = discount + parseFloat(amountDiscount.toFixed(2))
+                discount = parseFloat(inter4.toFixed(2));
+                cart[i].discount += parseFloat(amountDiscount.toFixed(2));
             }
         }
         updateTotal();
@@ -183,7 +193,13 @@ function ChangeQuantity(e){
             const itemID = row.cells[0].id
             const oldQty = cart[itemID].qty;
             cart[itemID].qty = parseInt(e.target.value);
-            subTotal = subTotal + (parseInt(e.target.value) - oldQty) * cart[itemID].price;
+            const inter = (parseInt(e.target.value) - oldQty) * cart[itemID].price;
+            const inter2 = subTotal + parseFloat(inter.toFixed(2));
+            subTotal = parseFloat(inter2.toFixed(2));
+            const inter3 = (parseInt(e.target.value) - oldQty) * (cart[itemID].discount/oldQty);
+            cart[itemID].discount += parseFloat(inter3.toFixed(2));
+            const inter4 = discount + parseFloat(inter3.toFixed(2));
+            discount = parseFloat(inter4.toFixed(2));
         }else{
             QtyErrorPopup()
         }
@@ -217,6 +233,7 @@ function closePopup(e){
 function updateTotal(){
     
     document.getElementById('subtotal').innerText = `${subTotal}`;
+    document.getElementById('discount').innerText = `${discount}`;
     const tax = taxRate / 100;
     const inter = subTotal * parseFloat(tax.toFixed(2));
     const sumTaxes = parseFloat(inter.toFixed(2));

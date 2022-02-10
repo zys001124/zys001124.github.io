@@ -233,7 +233,7 @@ function closePopup(e){
 function updateTotal(){
     
     document.getElementById('subtotal').innerText = `${subTotal}`;
-    document.getElementById('discount').innerText = `${discount}`;
+    document.getElementById('discount').innerText = `-${discount}`;
     const tax = taxRate / 100;
     const inter = subTotal * parseFloat(tax.toFixed(2));
     const sumTaxes = parseFloat(inter.toFixed(2));

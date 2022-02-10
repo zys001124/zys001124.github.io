@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Checkout Calculator</title>
+        <link rel="stylesheet" type="text/css" href="A1_style.css">
+    </head>
+    <body>
+        <div id = 'cart'>
+            <h2 style="margin-left:28%; margin-top: 8px; width: fit-content; position: relative;"><strong>Your Shopping Cart
+            </strong> </h2><br>
+            <p style="margin-left:455px; margin-bottom: 5px; font-weight: 600;">Price</p>
+            <hr style="height:1.5px;border:none;color:#333;background-color:#333;">
+            <table id="itemTable" style="border-collapse: collapse; ">
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id = 'calculator'>
+            <h2 style="margin-left:91px; width: fit-content;"><strong>Add Your Next Item Here </strong> </h2>
+            <form id='itemAddForm' style="margin-top: 8px;">
+                <input id='newItemName' type="text" placeholder="Item name">
+                <input id='newItemPrice' type="text" placeholder="Item Price">
+                <input class='button' type="submit" value="Input Item">
+            </form>
+
+            <div id = 'sum'>
+                <h2 style="margin-left:108px; margin-top: 6px; width: fit-content;"><strong>Order Summary </strong> </h2>
+                <br><hr><br><br><br>
+                <p style="margin-left: 20px; width: fit-content; font-size: larger; font-weight: 600; ">Subtotal <span id='subtotal'>0</span></p>
+                <p style="margin-left: 20px; width: fit-content; font-size: larger; font-weight: 600; margin-top: 10px;">Taxes <span id='taxes'>0</span></p>
+                <p style="margin-left: 20px; width: fit-content; font-size: larger; font-weight: 600; margin-top: 10px;">Discount <span id='discount'>0</span></p>
+                <br><br>
+                <form id='TaxRateForm' style="margin-left: 50px;">
+                    <input id='taxRateInput' type="text" placeholder="Tax Rate%">
+                    <input class='button' type="submit" value="Apply Tax Rate">
+                </form> <br>
+                <form id='DiscountForm' style="margin-left: 50px;">
+                    <input id='discountInput' type="text" placeholder="Discount%">
+                    <input class='button' type="submit" value="Apply Discount">
+                </form>
+                <br><br><hr><br><br><br>    
+                <p style="margin-left: 20px; width: fit-content; font-size: larger; font-weight: 800;">Order Total <span id='Total'>0</span></p>
+                <br><br>
+                <p style="font-size: larger; margin-left: 51px; font-weight: 600; ">Thank You For Shopping With Us! </p>
+            </div>
+        </div>
+
+        <div id="TaxErrorPopup">
+            <div class="popupContent">
+              <span id="Taxclose" class="close">&times;</span>
+              <p style="text-align: center; font-size: large; font-weight: 600; line-height: 25px;">Invalid Tax Rate <br> Please Enter A Number Larger Or Equal To 0</p>
+            </div>
+        </div>
+
+        <div id="DiscountErrorPopup">
+            <div class="popupContent">
+              <span id="Discountclose" class="close">&times;</span>
+              <p style="text-align: center; font-size: large; font-weight: 600; line-height: 25px;">Invalid Discount Rate <br> Please Enter A Number Between 0 And 100</p>
+            </div>
+        </div>
+
+        <div id="ItemErrorPopup">
+            <div class="popupContent">
+              <span id="Itemclose" class="close">&times;</span>
+              <p style="font-size:large; font-weight: 600; line-height: 25px; text-align: center;">Invalid Item Format<br> </p>
+              <p style="font-size:medium; font-weight: 600; line-height: 25px; text-align: left;"> 
+               The Name of the Item Must Be A String. The Price Of The Item Must Be A Number Bigger Or Equal To 0</p>
+            </div>
+        </div>
+
+        <div id="QtyErrorPopup">
+            <div class="popupContent">
+              <span id="Qtyclose" class="close">&times;</span>
+              <p style="font-size:large; font-weight: 600; line-height: 25px; text-align: center;">Invalid Quantity Input<br> </p>
+              <p style="font-size:medium; font-weight: 600; line-height: 25px; text-align: center;"> 
+               The Quantity Of The Item Must Be A Positive Integer</p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="A1_library.js"></script>
+    </body>
+
+</html>

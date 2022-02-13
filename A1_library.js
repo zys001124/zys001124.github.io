@@ -52,7 +52,7 @@ function addNewItemToCart(e){
 
     const itemName = document.querySelector('#newItemName').value;
 	const itemPrice = document.querySelector('#newItemPrice').value;
-    if(Number.isFinite(parseFloat(itemPrice)) && parseFloat(itemPrice) >= 0){
+    if(Number.isFinite(parseFloat(itemPrice)) && parseFloat(itemPrice) >= 0 && itemName.length != 0){
         const newItem = new item(itemName, itemPrice);
         cart.push(newItem);
         const inter = parseFloat(newItem.price).toFixed(2);
